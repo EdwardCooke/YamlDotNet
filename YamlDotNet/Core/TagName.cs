@@ -49,7 +49,7 @@ namespace YamlDotNet.Core
                 throw new ArgumentException("Tag value must not be empty.", nameof(value));
             }
 
-            this.value = string.Intern(value);
+            this.value = string.IsInterned(value) ?? value;
 
             if (IsGlobal && !Uri.IsWellFormedUriString(value, UriKind.RelativeOrAbsolute))
             {
