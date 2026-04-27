@@ -38,7 +38,7 @@ namespace YamlDotNet.Core
         private bool merged;
         private readonly int maxParsingEvents;
 
-        public MergingParser(IParser innerParser, int maxParsingEvents = 100000)
+        public MergingParser(IParser innerParser, int maxParsingEvents = 100_000)
         {
             events = new ParsingEventCollection();
             merged = false;
