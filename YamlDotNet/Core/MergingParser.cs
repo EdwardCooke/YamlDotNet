@@ -38,8 +38,18 @@ namespace YamlDotNet.Core
         private bool merged;
         private readonly int maxParsingEvents;
 
+        public MergingParser(IParser innerParser)
+          : this(innerParser, 100_000)
+        {
+        }
+
         public MergingParser(IParser innerParser, int maxParsingEvents = 100_000)
         {
+            if (maxParsingEvents <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(maxParsingEvents), "Max parsing events must be a positive integer.");
+            }
+
             events = new ParsingEventCollection();
             merged = false;
             iterator = events.GetEnumerator();
@@ -173,7 +183,7 @@ namespace YamlDotNet.Core
         {
             if (events.Count > maxParsingEvents)
             {
-                throw new YamlException(parsingEvent.Start, parsingEvent.End, "Too many events, preventing a memory overflow and erroring out.");
+                throw new YamlException(parsingEvent.Start, parsingEvent.End, $"Too many parsing events. The configured limit of {maxParsingEvents} was exceeded to prevent excessive memory usage.");
             }
         }
 

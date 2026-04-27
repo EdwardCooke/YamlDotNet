@@ -22,7 +22,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq.Expressions;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -207,7 +206,7 @@ Level3: {}
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception($"Unexpected exception: {ex.Message}");
+                    throw new Exception($"Unexpected exception", ex);
                 }
             }, cancellationTokenSource.Token);
         }
