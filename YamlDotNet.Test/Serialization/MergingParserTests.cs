@@ -199,7 +199,7 @@ Level3: {}
                         //move through everything, we're in a timebox so if this takes too long, the cancellation token will trigger and fail the test
                     }
                 }
-                catch (YamlException ex) when (ex.Message.Contains("Too many events"))
+                catch (YamlException ex) when (ex.Message.Contains("Too many parsing events"))
                 {
                     // Expected exception, test passes
                     return;
@@ -251,7 +251,7 @@ Level3: {}
                 };
 
                 parse.Should().Throw<YamlException>()
-                    .Where(ex => ex.Message.Contains("Too many events"));
+                    .Where(ex => ex.Message.Contains("Too many parsing events"));
             }, cancellationTokenSource.Token);
         }
 
