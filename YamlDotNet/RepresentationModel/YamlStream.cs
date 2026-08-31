@@ -36,7 +36,7 @@ namespace YamlDotNet.RepresentationModel
         /// <summary>
         /// Gets or sets the maximum depth for reading the YAML stream.
         /// </summary>
-        public int MaxDepth { get; set; } = 100;
+        public int MaxDepth { get; set; } = DocumentLoadingState.MaxReadDepthDefault;
 
         /// <summary>
         /// Gets the documents inside the stream.
